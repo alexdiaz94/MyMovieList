@@ -1,28 +1,24 @@
 import React from 'react';
 
-
 class Input extends React.Component {
-
-
 
   render() {
 
     return (
-      <form onSubmit={this.handleCreate.bind(this)}>
-        <input type="text" placeholder="Save My List" ref="createInput"/>
+      <form onSubmit={this.props.handleSubmit}>
+        <input type="text" placeholder="Save My List" value={this.props.inputValue}
+          onChange={this.props.handleChange}
+        />
         <button>Create Movie List</button>
       </form>
     );
   }
-  handleCreate(e) {
-    e.preventDefault();
-    console.log(this.refs.createInput.value);
-    const createInput = this.refs.createInput;
-    const title = createInput.value;
-
-    this.props.createList(title);
-    this.refs.createInput.value = '';
-
-  }
 }
+const propTypes = {
+  inputValue: React.PropTypes.string.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired,
+  handleChange: React.PropTypes.func.isRequired
+};
+
+Input.propTypes = propTypes;
 export default Input;

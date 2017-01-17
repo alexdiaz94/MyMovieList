@@ -1,24 +1,30 @@
 import React from 'react';
-import MovieListHeader from './movielistheader';
 import MovieListTitle from './movielisttitle';
-import _ from 'lodash';
 
 class MovieList extends React.Component {
-  renderList() {
-    return _.map(this.props.myMovieList, (list, index) => <MovieListTitle key={index}
-      {...list} />);
-  }
-
-
   render() {
+    let moviefeed = this.props.movies.map((movie, i) => {
+      console.log(movie)
+      return (
+        <MovieListTitle movie={movie.title}
+        key={movie.id}
+        deleteRequest={this.props.deleteRequest}
+
+
+        />
+      );
+    });
     return (
-      <table>
-        <MovieListHeader />
-        <tbody>
-          {this.renderList()}
-        </tbody>
-      </table>
+      <ul>
+        {moviefeed}
+      </ul>
     );
   }
 }
+const propTypes = {
+  movies: React.PropTypes.array.isRequired
+};
+
+MovieList.propTypes = propTypes;
+
 export default MovieList;

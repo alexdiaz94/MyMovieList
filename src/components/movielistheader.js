@@ -1,14 +1,11 @@
 import React from 'react';
 
-
 class MovieListHeader extends React.Component {
-
-
 
   render() {
     return (
 
-        <thead>
+      <thead>
           <tr>
           <th>myMovieList</th>
           <th>Title</th>
