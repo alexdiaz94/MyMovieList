@@ -5,18 +5,17 @@ import _ from 'lodash';
 
 class MovieList extends React.Component {
   renderList() {
-    return _.map(this.props.myMovieList, (list, i) => <MovieListTitle key={i}
-       {...list} />);
+    return _.map(this.props.myMovieList, (list, index) => <MovieListTitle key={index}
+      {...list} />);
   }
 
 
   render() {
-
-
     return (
       <table>
         <MovieListHeader />
-        <tbody>{this.renderList()}
+        <tbody>
+          {this.renderList()}
         </tbody>
       </table>
     );

@@ -1,9 +1,9 @@
 import React from 'react';
-import MovieListHeader from './movielistheader';
+
 
 
 class MovieListTitle extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -11,6 +11,7 @@ class MovieListTitle extends React.Component {
     };
     this.onEditClick = this.onEditClick.bind(this);
     this.onCancelClick = this.onCancelClick.bind(this);
+
 
   }
 
@@ -20,17 +21,38 @@ class MovieListTitle extends React.Component {
   onCancelClick() {
     this.setState({ isEditing: false });
   }
+  onSaveClick(e) {
+    e.preventDefault();
+
+    const oldTitle = this.props.title;
+    const newTitle = this.refs.editInput.value;
+    this.props.saveList(oldTitle, newTitle);
+    this.setState({ isEditing: false });
+  }
+  renderListSection() {
+    const {title, isDone } = this.props;
+
+    if (this.state.isEditing) {
+      return (
+        <td>
+          <form onSubmit={this.onSaveClick.bind(this)}>
+            <input type="text" defaultValue={title} ref="editInput" />
+          </form>
+        </td>
+        );
+    }
+}
 
   renderEditSection() {
     if (this.state.isEditing) {
       return (
         <td>
-          <button>Save</button>
+          <button onClick={this.onSaveClick.bind(this)}>Save</button>
           <button onClick={this.onCancelClick}>Cancel</button>
         </td>
         );
     }
-    return (
+      return (
         <td>
           <button onClick={this.onEditClick}>Edit</button>
           <button>Delete</button>
@@ -42,10 +64,11 @@ class MovieListTitle extends React.Component {
   render() {
     return (
       <tr>
-        <td>{this.props.myMovieList}</td>
         <td>
-        <MovieListHeader />
+          {this.props.myMovieList}
+        <td>
           {this.renderEditSection()}
+          </td>
         </td>
       </tr>
     );
