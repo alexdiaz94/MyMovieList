@@ -9,7 +9,7 @@ class Input extends React.Component {
         <input type="text" placeholder="Save My List" value={this.props.inputValue}
           onChange={this.props.handleChange}
         />
-        <button>Create Movie List</button>
+        <button>Add Movies</button>
       </form>
     );
   }

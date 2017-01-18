@@ -6,11 +6,14 @@ class MovieList extends React.Component {
     let moviefeed = this.props.movies.map((movie, i) => {
       console.log(movie)
       return (
-        <MovieListTitle movie={movie.title}
+        <MovieListTitle
+        movie={movie.title}
+        movieId={movie.id}
         key={movie.id}
         deleteRequest={this.props.deleteRequest}
-
-
+        updateMovie={this.props.updateMovie}
+        patchMovie={this.props.patchMovie}
+        moviesState = {this.props.movies}
         />
       );
     });

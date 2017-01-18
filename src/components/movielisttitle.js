@@ -10,6 +10,7 @@ class MovieListTitle extends React.Component {
     this.onEditClick = this.onEditClick.bind(this);
     this.onCancelClick = this.onCancelClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onSaveClick = this.onSaveClick.bind(this);
 
   }
 
@@ -26,27 +27,30 @@ class MovieListTitle extends React.Component {
   onSaveClick(e) {
     e.preventDefault();
 
-    const oldTitle = this.props.title;
-    const newTitle = this.refs.editInput.value;
-    this.props.saveList(oldTitle, newTitle);
+    // const oldTitle = this.props.title;
+    // const newTitle = this.refs.editInput.value;
+    // this.props.saveList(oldTitle, newTitle);
+
+    this.props.patchMovie(this.props.movieId, this.props.moviesState);
     this.setState({
       isEditing: false
     });
   }
-  onDeleteClick(e, id) {
-    this.props.deleteRequest(this.props.movie.title)
+  onDeleteClick(e) {
+    //console.log(this.props)
+    this.props.deleteRequest(this.props.movieId)
     }
 
   renderListSection() {
     const {
       title,
     } = this.props;
-    console.log(this.props)
+    //console.log(this.props)
     // if (this.state.isEditing) {
       return (
         <li>
-          <form onSubmit={this.onSaveClick.bind(this)}>
-            <input type="text" defaultValue={this.props.movie} ref="editInput" />
+          <form onSubmit={this.onSaveClick}>
+            <input type="text" defaultValue={this.props.movie}  id={this.props.movieId} onChange={this.props.updateMovie}/>
           </form>
         </li>
       );
@@ -56,7 +60,7 @@ class MovieListTitle extends React.Component {
     if (this.state.isEditing) {
       return (
         <li>
-          <button onClick={this.onSaveClick.bind(this)}>Save</button>
+          <button onClick={this.onSaveClick}>Save</button>
           <button onClick={this.onCancelClick}>Cancel</button>
         </li>
       );
@@ -66,9 +70,7 @@ class MovieListTitle extends React.Component {
           <button onClick={this.onEditClick}>Edit</button>
           <button onClick={this.onDeleteClick}>Delete</button>
         </li>
-
     );
-    console.log(this.onDeleteClick);
   }
 
 
