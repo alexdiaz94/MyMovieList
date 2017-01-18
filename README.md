@@ -18,9 +18,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Troubleshooting](#troubleshooting)
 
 ## Built With
--React - javascript library used
--Axios - api requests
--Firebase - database used for storing data
+- React - javascript library used
+- Axios - api requests
+- Firebase - database used for storing data
 
 ## Authors
 * Alex Diaz - Initial work - School project for GA
